@@ -1,0 +1,11 @@
+h2 {
+	font-family: sans-serif;
+	font-size: 1.2em;
+}
+
+.gallery {
+	min-height: 50rem;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	background-color: #f7f7f7;
+}

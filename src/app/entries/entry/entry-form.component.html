@@ -1,0 +1,23 @@
+<!-- 1-way data binding (submit event)="component method /handler" -->
+<form (submit)="onSubmit()" #commentForm="ngForm" novalidate>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <!--2-way data binding = [(ngAttribute)]="componentVar"  -->
+        <input class="form-control" type="text" id="name" name="name" [(ngModel)]="name" required minlength="3" #nameField="ngModel" [ngStyle]="{ 'outline-color': nameField.dirty && nameField.valid ? 'green' : undefined }" />
+        <div class="alert alert-danger" *ngIf="(commentForm.submitted  || nameField.touched) && nameField.errors">
+            <div [hidden]="!nameField.errors.required">Name is required</div>
+            <div [hidden]="!nameField.errors.minlength">Name must be at 3 characters</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea class="form-control" id="comment" rows="3" name="comment" [(ngModel)]="comment" required minlength="3" #commentField="ngModel" [ngStyle]="{ 'outline-color': commentField.dirty && commentField.valid ? 'green' : undefined }"></textarea>
+        <div class="alert alert-danger" *ngIf="(commentForm.submitted || commentField.touched) && commentField.errors">
+            <div [hidden]="!commentField.errors.required">Comment is required</div>
+            <div [hidden]="!commentField.errors.minlength">Comment must be at 3 characters</div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-outline-dark btn-block">Submit</button>
+    </div>
+</form>

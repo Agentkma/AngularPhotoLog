@@ -1,0 +1,19 @@
+<div class="card" style="width: 100%;">
+    <img class="card-img-top" src="{{entry.photo}}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{entry.title}}</h5>
+        <p class="card-text">{{entry.description}}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+    <div class="actions">
+        <button type="button" (click)="isLiked = !isLiked" [ngClass]="{liked: isLiked}">❤</button>
+        <button type="button" (click)="showComments = !showComments">Comments ({{entry.comments.length}})</button>
+    </div>
+</div>
+
+<div class="comments" *ngIf="showComments">
+    <div class="comment" *ngFor="let comment of entry.comments">
+        <p><strong>{{comment.name}}</strong> {{comment.comment}}</p>
+    </div>
+    <app-entry-form (onCommentAdded)="onCommentAdded($event)" [entryId]="entry.id"></app-entry-form>
+</div>
